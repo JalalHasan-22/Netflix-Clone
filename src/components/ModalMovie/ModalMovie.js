@@ -1,7 +1,17 @@
 import React from "react";
 import { Modal, Button, Form, Card } from "react-bootstrap";
+import { useRef } from "react";
 
-function ModalMovie({ show, handleClose, clickedMovie }) {
+function ModalMovie({ show, handleClose, clickedMovie, updateMovie }) {
+  const commentRef = useRef();
+
+  function handleComment(e) {
+    e.preventDefault();
+    const comment = commentRef.current.value;
+
+    const newMovie = { ...clickedMovie, comment };
+    updateMovie(newMovie, clickedMovie.id);
+  }
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -20,9 +30,13 @@ function ModalMovie({ show, handleClose, clickedMovie }) {
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Leave a comment</Form.Label>
-            <Form.Control type="text" placeholder="Add your comment" />
+            <Form.Control
+              ref={commentRef}
+              type="text"
+              placeholder="Add your comment"
+            />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onClick={handleComment}>
             Add
           </Button>
         </Form>

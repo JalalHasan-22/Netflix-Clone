@@ -1,0 +1,24 @@
+.nav {
+  background-color: #000;
+  color: #fff;
+  height: 80px;
+  justify-content: space-around;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.nav ul {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  margin-right: 1rem;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #fff;
+}
